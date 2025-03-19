@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>وكالة معتز للسفر والسياحة</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('BACKGROUND_IMAGE_URL');
+            background-size: cover;
+            background-position: center;
+            min-height: 100vh;
+        }
+
+        .header {
+            text-align: center;
+            color: #fff;
+            padding: 30px 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            font-size: 1.8em;
+        }
+
+        .container {
+            padding: 20px;
+            padding-bottom: 100px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .icon {
+            background: rgba(88, 24, 69, 0.6); /* لون كبدي مع شفافية */
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 15px;
+            aspect-ratio: 1/1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .icon::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.2),
+                transparent
+            );
+            transition: 0.5s;
+        }
+
+        .icon:hover::before {
+            left: 100%;
+        }
+
+        .icon:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+
+        .icon img {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 10px;
+            filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
+        }
+
+        .icon span {
+            font-size: 0.9em;
+            text-align: center;
+            line-height: 1.4;
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background: rgba(88, 24, 69, 0.9);
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .footer-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .footer-icon:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <h1 class="header">وكالة معتز للسفر و السياحة</h1>
+    
+    <div class="container">
+        <div class="grid">
+            <div class="icon" onclick="navigate('flights')">
+                <img src="flight-icon.png" alt="طيران">
+                <span>حجز تذاكر الطيران</span>
+            </div>
+            
+            <div class="icon" onclick="navigate('visa')">
+                <img src="visa-icon.png" alt="تأشيرات">
+                <span>التأشيرات</span>
+            </div>
+
+            <div class="icon" onclick="navigate('hajj')">
+                <img src="hajj-icon.png" alt="حج وعمرة">
+                <span>الحج والعمرة</span>
+            </div>
+
+            <div class="icon" onclick="navigate('hotels')">
+                <img src="hotel-icon.png" alt="فنادق">
+                <span>الفنادق</span>
+            </div>
+
+            <div class="icon" onclick="navigate('universities')">
+                <img src="university-icon.png" alt="جامعات">
+                <span>التقديم لجامعات</span>
+            </div>
+
+            <div class="icon" onclick="navigate('lottery')">
+                <img src="lottery-icon.png" alt="لوتري">
+                <span>برنامج اللوتري</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="footer-icon" onclick="navigate('about')">
+            ℹ️<br><small>من نحن</small>
+        </div>
+    </div>
+
+    <script>
+        function navigate(page) {
+            const pages = {
+                flights: '#',
+                visa: '#',
+                hajj: '#',
+                hotels: '#',
+                universities: '#',
+                lottery: '#',
+                about: 'about.html'
+            };
+            
+            if(pages[page]) {
+                window.location.href = pages[page];
+            }
+        }
+
+        // إضافة تأثير اللمس
+        document.querySelectorAll('.icon').forEach(icon => {
+            icon.addEventListener('touchstart', () => {
+                icon.style.transform = 'translateY(-2px)';
+            });
+            
+            icon.addEventListener('touchend', () => {
+                icon.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body>
+</html>
